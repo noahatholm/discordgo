@@ -118,7 +118,7 @@ type Session struct {
 	onceHandlers map[string][]*eventHandlerInstance
 
 	// The websocket connection.
-	wsConn *websocket.Conn
+	WsConn *websocket.Conn
 
 	// When nil, the session is not listening.
 	listening chan interface{}
@@ -136,7 +136,7 @@ type Session struct {
 	sessionID string
 
 	// used to make sure gateway websocket writes do not happen concurrently
-	wsMutex sync.Mutex
+	WsMutex sync.Mutex
 }
 
 // ApplicationIntegrationType dictates where application can be installed and its available interaction contexts.
