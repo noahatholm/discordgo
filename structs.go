@@ -118,7 +118,7 @@ type Session struct {
 	onceHandlers map[string][]*eventHandlerInstance
 
 	// The websocket connection.
-	WsConn *websocket.Conn
+	wsConn *websocket.Conn
 
 	// When nil, the session is not listening.
 	listening chan interface{}
@@ -136,7 +136,7 @@ type Session struct {
 	sessionID string
 
 	// used to make sure gateway websocket writes do not happen concurrently
-	WsMutex sync.Mutex
+	wsMutex sync.Mutex
 }
 
 // ApplicationIntegrationType dictates where application can be installed and its available interaction contexts.
@@ -3093,4 +3093,13 @@ const (
 // This is now a no-op, and is not necessary to use.
 func MakeIntent(intents Intent) Intent {
 	return intents
+}
+
+// Noah's Functions
+func (s *Session) GetWebSocket() *websocket.Conn {
+	return s.wsConn
+}
+
+func (s *Session) GetWebSocketMutex() *sync.Mutex {
+	return &s.wsMutex
 }
